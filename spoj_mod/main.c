@@ -6,6 +6,10 @@
 //  Copyright © 2019 ernesto alvarado. All rights reserved.
 //
 
+// XXX: https://www.spoj.com/problems/MOD/
+// XXX: https://math.stackexchange.com/questions/131127/algorithms-for-solving-the-discrete-logarithm-ax-equiv-b-pmodn-when-gcd
+// XXX: https://lumakernel.github.io/ecasdqina/math/number-theory/Baby-Step-Giant-Step
+
 #if 1
 #define _GNU_SOURCE
 #include <stdio.h>
@@ -461,10 +465,10 @@ COMUN_FUNC_STATICA natural comun_encuentra_minimo_natural(natural *a,
     return min;
 }
 
-COMUN_FUNC_STATICA natural comun_mcd(natural a, natural b) {
-    natural r = COMUN_VALOR_INVALIDO;
+COMUN_FUNC_STATICA entero_largo comun_mcd(entero_largo a, entero_largo b) {
+    entero_largo r = COMUN_VALOR_INVALIDO;
     while (a && b) {
-        natural tmp = b;
+        entero_largo tmp = b;
         b = a % b;
         a = tmp;
     }
@@ -1306,12 +1310,34 @@ static inline void hash_map_robin_hood_back_shift_insertar_nuevo(
 #if 1
 COMUN_FUNC_STATICA entero_largo paso_bebe_paso_gigante(entero_largo a,entero_largo b, entero_largo g){
     entero_largo r=-1;
-    entero_largo Q=floor(sqrt(g));
+    hm_rr_bs_tabla *ht=comun_calloc_local(hm_rr_bs_tabla);
+    
+    a%=g;
+    b%=g;
+    if(b==1){
+        return 0;
+    }
+    entero_largo mcd=0;
+    entero_largo b_inv=1;
+    entero_largo bias=0;
+    while ((mcd=comun_mcd(a,g))!=1) {
+        if(b%mcd){
+            return -1;
+        }
+        b/=mcd;
+        g/=mcd;
+        b_inv=(b_inv*(a/mcd))%g;
+        bias++;
+        if(b==b_inv){
+            return bias;
+        }
+    }
+    comun_log_debug("a %lld b %lld g %llu bias %lld",a,b,g,bias);
+
+    entero_largo Q=floor(sqrt(g))+1;
     entero_largo Q_tmp=Q;
     entero_largo pot_acum=a%g;
     entero_largo a_Q=1;
-    hm_rr_bs_tabla *ht=comun_calloc_local(hm_rr_bs_tabla);
-    
     hash_map_robin_hood_back_shift_init(ht, (natural)Q<<2);
     
     while(Q_tmp){
@@ -1321,7 +1347,8 @@ COMUN_FUNC_STATICA entero_largo paso_bebe_paso_gigante(entero_largo a,entero_lar
         Q_tmp>>=1;
         pot_acum=(pot_acum*pot_acum)%g;
     }
-    entero_largo a_Q_x=1;
+    entero_largo a_Q_x=b_inv;
+    comun_log_debug("a^Q^x %lld con b %lld Q %lld",a_Q,b_inv,Q);
     for(natural x=1;x<=Q;x++){
         a_Q_x=(a_Q_x*a_Q)%g;
         entero_largo x_tmp=HASH_MAP_VALOR_INVALIDO;
@@ -1341,8 +1368,8 @@ COMUN_FUNC_STATICA entero_largo paso_bebe_paso_gigante(entero_largo a,entero_lar
         hm_iter iter=hash_map_robin_hood_back_shift_obten(ht, (void *)b_a_y, &x);
         comun_log_debug("b*a^y %lld tiene x %llu", b_a_y, x);
         if(iter!=HASH_MAP_VALOR_INVALIDO){
-            entero_largo r_tmp=Q*x-y;
-            if((r==-1 && r_tmp) || r_tmp<r){
+            entero_largo r_tmp=Q*x-y+bias;
+            if(r==-1 || r_tmp<r){
                 r=r_tmp;
             }
         }
@@ -1384,7 +1411,7 @@ COMUN_FUNC_STATICA void codechef_fibonacci_number_main(){
         if(!x && !z && !k){
             break;
         }
-        entero_largo r=paso_bebe_paso_gigante(x, k%z, z);
+        entero_largo r=paso_bebe_paso_gigante(x, k, z);
         if(r!=-1){
             
         printf("%lld\n",r);

@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "spoj_mod/main.c"
-            timestampString = "588908437.396777"
+            timestampString = "589195975.932199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1346"
-            endingLineNumber = "1346"
+            startingLineNumber = "1319"
+            endingLineNumber = "1319"
             landmarkName = "paso_bebe_paso_gigante"
             landmarkType = "9">
          </BreakpointContent>

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "30FAF385231A0462008F3BF3"
-               BuildableName = "spoj_mod"
-               BlueprintName = "spoj_mod"
+               BlueprintIdentifier = "30FAF393231A0891008F3BF3"
+               BuildableName = "shame"
+               BlueprintName = "shame"
                ReferencedContainer = "container:spoj_mod.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30FAF385231A0462008F3BF3"
-            BuildableName = "spoj_mod"
-            BlueprintName = "spoj_mod"
+            BlueprintIdentifier = "30FAF393231A0891008F3BF3"
+            BuildableName = "shame"
+            BlueprintName = "shame"
             ReferencedContainer = "container:spoj_mod.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,19 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30FAF385231A0462008F3BF3"
-            BuildableName = "spoj_mod"
-            BlueprintName = "spoj_mod"
+            BlueprintIdentifier = "30FAF393231A0891008F3BF3"
+            BuildableName = "shame"
+            BlueprintName = "shame"
             ReferencedContainer = "container:spoj_mod.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "STDIN"
-            value = "/Users/ernestoalvarado/eworkspace/spoj_mod/spoj_mod/in02a.txt"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -81,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30FAF385231A0462008F3BF3"
-            BuildableName = "spoj_mod"
-            BlueprintName = "spoj_mod"
+            BlueprintIdentifier = "30FAF393231A0891008F3BF3"
+            BuildableName = "shame"
+            BlueprintName = "shame"
             ReferencedContainer = "container:spoj_mod.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

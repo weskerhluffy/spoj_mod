@@ -6,6 +6,7 @@
 //  Copyright © 2019 ernesto alvarado. All rights reserved.
 //
 
+// XXX: https://github.com/miskcoo/oicode/blob/master/spoj/MOD.cpp
 /* SPOJ-MOD - Power Modulo Inverted
  *   扩展大步小步  */
 #include <cstdio>
@@ -39,21 +40,30 @@ int baby_step_giant_step(int a, int b, int p)
         ++cnt;
         if(b == t) return cnt;
     }
+//    std::printf("a %lld b %lld g %llu bias %lld\n",a,b,p,cnt);
     std::map<int, int> hash;
     int m = int(sqrt(1.0 * p) + 1);
     long long base = b;
     for(int i = 0; i != m; ++i)
     {
         hash[base] = i;
+//        std::printf("b*a^y %lld tiene x %llu\n", base, i);
         base = base * a % p;
     }
     base = mod_pow(a, m, p);
     long long now = t;
+//    std::printf("a^Q^x %lld con b %lld Q %lld\n",base,now,m);
     for(int i = 1; i <= m + 1; ++i)
     {
         now = now * base % p;
         if(hash.count(now))
+        {
+//            std::printf("a^Q^x %lld ya estaba con valor %lld\n",now,i);
             return i * m - hash[now] + cnt;
+        }
+        else{
+//            std::printf("a^Q^x %lld no estaba agregando valor %lld\n",now,i);
+        }
     }
     return -1;
 }
